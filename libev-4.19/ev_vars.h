@@ -43,6 +43,11 @@ VARx(ev_tstamp, now_floor) /* last time we refreshed rt_time */
 VARx(ev_tstamp, mn_now)    /* monotonic clock "now" */
 VARx(ev_tstamp, rtmn_diff) /* difference realtime - monotonic time */
 
+//上面三行等价域
+// ev_tstamp ev_tstamp;
+// ev_tstamp mn_now;
+// ev_tstamp rtmn_diff;
+
 /* for reverse feeding of events */
 VARx(W *, rfeeds)
 VARx(int, rfeedmax)
