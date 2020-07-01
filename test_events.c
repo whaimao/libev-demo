@@ -29,7 +29,7 @@ void timer_action(struct ev_loop *main_loop,ev_timer *timer_w,int e)
 void signal_action(struct ev_loop *main_loop,ev_signal signal_w,int e)
 {
         puts("in signal cb \n");
-        ev_signal_stop(main_loop,signal_w);
+        ev_signal_stop(main_loop,&signal_w);
         ev_break(main_loop,EVBREAK_ALL);
 }
  
