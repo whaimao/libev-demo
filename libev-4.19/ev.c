@@ -1614,12 +1614,12 @@ typedef struct
   struct ev_loop
   {
     ev_tstamp ev_rt_now;
-    #define ev_rt_now ((loop)->ev_rt_now)
-    #define VAR(name,decl) decl;
-      #include "ev_vars.h"
+    #define ev_rt_now ((loop)->ev_rt_now) //后面的ev_rt_now 都用 ((loop)->ev_rt_now) 代替
+    #define VAR(name,decl) decl;//相当于展开 ev_vars.h中定义的变量
+      #include "ev_vars.h" //只有在ev_vars.h才能使用宏VAR(name,decl)   
     #undef VAR
   };
-  #include "ev_wrap.h"
+  #include "ev_wrap.h" // 展开ev_wrap.h中的宏
 
   static struct ev_loop default_loop_struct;
   EV_API_DECL struct ev_loop *ev_default_loop_ptr = 0; /* needs to be initialised to make it a definition despite extern */
@@ -3022,12 +3022,12 @@ ev_default_loop (unsigned int flags) EV_THROW
   if (!ev_default_loop_ptr)
     {
 #if EV_MULTIPLICITY
-      EV_P = ev_default_loop_ptr = &default_loop_struct;
+      EV_P = ev_default_loop_ptr = &default_loop_struct; // EV_P = struct ev_loop *loop
 #else
       ev_default_loop_ptr = 1;
 #endif
 
-      loop_init (EV_A_ flags);
+      loop_init (EV_A_ flags); // loop_init (loop, flags)
 
       if (ev_backend (EV_A))
         {
