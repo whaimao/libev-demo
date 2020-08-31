@@ -3636,7 +3636,7 @@ ev_io_start (EV_P_ ev_io *w) EV_THROW
   assert (("libev: ev_io_start called with negative fd", fd >= 0));
   assert (("libev: ev_io_start called with illegal event mask", !(w->events & ~(EV__IOFDSET | EV_READ | EV_WRITE))));
 
-  EV_FREQUENT_CHECK;
+  EV_FREQUENT_CHECK;//检测Libev的内部数据结构，判断各边界值是否合理，不合理的时候assert掉
 
   ev_start (EV_A_ (W)w, 1);
   array_needsize (ANFD, anfds, anfdmax, fd + 1, array_init_zero);
